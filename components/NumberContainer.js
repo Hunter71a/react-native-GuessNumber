@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+
+import  Colors  from '../constants/colors';
 
 const NumberContainer = props => {
     return (
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: Colors.accent,
         padding: 10,
-        borderRadius: 20,
+        borderRadius: 10,
         marginVertical: 10,
         alignItems: 'center',
         justifyContent: 'center'
