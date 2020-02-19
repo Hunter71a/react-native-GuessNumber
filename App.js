@@ -12,8 +12,6 @@ const fetchFonts = () => {
   Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
-    //'tomorrow': require('./assets/fonts/Tomorrow-Regular.ttf'),
-  //  'rajdhani-bold': require('./assets/fonts/Rajdhani-Bold.ttf'),
   });
 };
 
