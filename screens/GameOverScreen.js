@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   imageContainer: {
-    borderRadius: 150,
+    borderRadius: 133,
     borderWidth: 3,
     borderColor: 'black',
-    width: 300,
-    height: 300,
+    width: 266,
+    height: 266,
     overflow: 'hidden',
   },
   resultContainer:{

@@ -89,7 +89,7 @@ const GameScreen = props => {
             <View style={DefaultStyles.imageContainer}>
                 <Image 
                     fadeDuration={1000}
-                    source={require('../assets/img/question-mark.png')}
+                    source={require('../assets/img/robot.png')}
                     style={DefaultStyles.image}
                     resizeMode={"center"}
                 />
