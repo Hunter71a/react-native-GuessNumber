@@ -1,8 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, StyleSheet, Text, Button, Alert } from 'react-native';
 
-import NumberContainer from '../components/NumberContainer';
+import BodyText from '../components/BodyText';
 import Card from '../components/Card';
+import DefaultStyles from '../constants/default-styles';
+import NumberContainer from '../components/NumberContainer';
+
 
 const generateRandomBetween = (min, max, exclude) => {
     min = Math.ceil(min);
@@ -23,7 +26,7 @@ const GameScreen = props => {
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
 
-    const {userChoice, onGameOver} = props;
+    const { userChoice, onGameOver } = props;
 
     useEffect(() => {
         if (currentGuess === userChoice) {
@@ -36,29 +39,27 @@ const GameScreen = props => {
             (direction === 'lower' && currentGuess < props.userChoice) ||
             (direction === 'higher' && currentGuess > props.userChoice)
         ) {
-            const randomAlert = Math.floor(Math.random() * 4) + 1;
+            const randomAlert = Math.floor(Math.random() * 3) + 1;
             if (randomAlert === 1) {
                 Alert.alert('Error Alert!', 'Are you having trouble remembering the number you chose?', [
                     { text: 'Try Again', style: 'cancel' }
                 ]);
             }
-            
             if (randomAlert === 2) {
-            Alert.alert('Are you serious?',
-                'By your slackjawed vacant gaze I can only assume you have forgotten which number you picked. It\'s "' + props.userChoice + '" if that helps.', [
-                { text: 'Soory!', style: 'cancel' }
+                Alert.alert('Are you serious?',
+                    'By your vacant gaze I can only assume you have forgotten which number you picked. It\'s "' + props.userChoice + '" if that helps.', [
+                    { text: 'Soory!', style: 'cancel' }
                 ]);
             }
-            if (randomAlert === 3 || randomAlert === 4) {
+            if (randomAlert === 3) {
                 Alert.alert('Wrong Button!',
                     'In case you forgot, the number you chose is "' + props.userChoice + '"', [
                     { text: 'Return', style: 'cancel' }
                 ]);
             }
-
-
             return;
         }
+
         if (direction === 'lower') {
             currentHigh.current = currentGuess;
 
@@ -79,7 +80,7 @@ const GameScreen = props => {
 
     return (
         <View style={styles.screen}>
-            <Text>Opponent's Guess: </Text>
+            <Text style={DefaultStyles.label}>Opponent's Guess: </Text>
             <NumberContainer>{currentGuess}</NumberContainer>
             <Card style={styles.buttonContainer}>
                 <Button title="LOWER" onPress={nextGuessHandler.bind(this, 'lower')} />
