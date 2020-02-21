@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Keyboard, StyleSheet, Text, Button, TouchableWithoutFeedback, Alert } from 'react-native';
+import { View, Keyboard, StyleSheet, Text, Button, TouchableWithoutFeedback, Alert, Image } from 'react-native';
 
 import BodyText from '../components/BodyText';
 import Card from '../components/Card'
@@ -46,8 +46,23 @@ const StartGameScreen = props => {
             <Card style={styles.summaryContainer}>
                 <BodyText>You selected</ BodyText>
                 <NumberContainer>{selectedNumber}</NumberContainer>
-                <Button title="START GAME" onPress={() => props.onStartGame(selectedNumber)}/>
+                <Button title="START GAME" onPress={() => props.onStartGame(selectedNumber)} />
             </Card >
+        );
+    }
+
+    let unconfirmed;
+
+    if (!confirmed) {
+        unconfirmed = (
+            <View style={styles.imageContainer}>
+                <Image
+                    fadeDuration={1000}
+                    source={require('../assets/img/question_mark.png')}
+                    style={styles.image}
+                    resizeMode={"center"}
+                />
+            </View>
         );
     }
 
@@ -85,6 +100,7 @@ const StartGameScreen = props => {
                     </View>
                 </Card>
                 {confirmedOutput}
+                {unconfirmed}             
             </View>
         </TouchableWithoutFeedback>
     );
@@ -95,7 +111,7 @@ const styles = StyleSheet.create({
         margin: 10,
         width: '33%',
         borderRadius: 10,
-        backgroundColor: 'red'    
+        backgroundColor: 'red'
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -103,6 +119,22 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
 
     },
+
+    image: {
+        width: '100%',
+        height: '100%',
+    },
+    imageContainer: {
+        borderRadius: 100,
+        borderWidth: 3,
+        borderColor: 'black',
+        width: 200,
+        height: 200,
+        overflow: 'hidden',
+        marginTop: 30,
+        padding: 30,
+    },
+
     input: {
         width: '50%',
         textAlign: 'center'
@@ -141,7 +173,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         marginVertical: 30,
         fontFamily: 'rajdhani',
-  
+
     }
 });
 

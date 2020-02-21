@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, StyleSheet, Text, Button, Alert } from 'react-native';
+import { View, StyleSheet, Text, Button, Alert, Image} from 'react-native';
 
 import BodyText from '../components/BodyText';
 import Card from '../components/Card';
@@ -86,6 +86,14 @@ const GameScreen = props => {
                 <Button title="LOWER" onPress={nextGuessHandler.bind(this, 'lower')} />
                 <Button title="HIGHER" onPress={nextGuessHandler.bind(this, 'higher')} />
             </Card>
+            <View style={DefaultStyles.imageContainer}>
+                <Image 
+                    fadeDuration={1000}
+                    source={require('../assets/img/question-mark.png')}
+                    style={DefaultStyles.image}
+                    resizeMode={"center"}
+                />
+            </View>
         </View>
     );
 };
