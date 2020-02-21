@@ -36,10 +36,27 @@ const GameScreen = props => {
             (direction === 'lower' && currentGuess < props.userChoice) ||
             (direction === 'higher' && currentGuess > props.userChoice)
         ) {
+            const randomAlert = Math.floor(Math.random() * 4) + 1;
+            if (randomAlert === 1) {
+                Alert.alert('Error Alert!', 'Are you having trouble remembering the number you chose?', [
+                    { text: 'Try Again', style: 'cancel' }
+                ]);
+            }
+            
+            if (randomAlert === 2) {
             Alert.alert('Are you serious?',
-                'I can only imagine you sitting there slackjawed wondering what number you picked as a spittle of drool runs out of the corner of your open mouth.', [
+                'I can only imagine you sitting there slackjawed wondering what number you picked.', [
                 { text: 'Soory!', style: 'cancel' }
-            ]);
+                ]);
+            }
+            if (randomAlert === 3 || randomAlert === 4) {
+                Alert.alert('Wrong Button!',
+                    'In case you forgot, the number you chose is ' + props.userChoice, [
+                    { text: 'Return', style: 'cancel' }
+                ]);
+            }
+
+
             return;
         }
         if (direction === 'lower') {

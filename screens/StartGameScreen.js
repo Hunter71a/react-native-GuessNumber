@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 25,
         marginVertical: 15,
-       // fontFamily: 'OpenSans-Bold.ttf'
+        fontFamily: 'tomorrow'
     }
 });
 
