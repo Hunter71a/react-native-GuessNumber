@@ -6,6 +6,9 @@ export default StyleSheet.create({
     fontFamily: 'open-sans',
     color: 'red'
   }, 
+  highlight: {
+    
+  },
   label: {
     fontSize: 20,
     fontFamily: 'tomorrow',
