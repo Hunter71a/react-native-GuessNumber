@@ -45,13 +45,13 @@ const GameScreen = props => {
             
             if (randomAlert === 2) {
             Alert.alert('Are you serious?',
-                'I can only imagine you sitting there slackjawed wondering what number you picked.', [
+                'By your slackjawed vacant gaze I can only assume you have forgotten which number you picked. It\'s "' + props.userChoice + '" if that helps.', [
                 { text: 'Soory!', style: 'cancel' }
                 ]);
             }
             if (randomAlert === 3 || randomAlert === 4) {
                 Alert.alert('Wrong Button!',
-                    'In case you forgot, the number you chose is ' + props.userChoice, [
+                    'In case you forgot, the number you chose is "' + props.userChoice + '"', [
                     { text: 'Return', style: 'cancel' }
                 ]);
             }
