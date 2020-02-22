@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, StyleSheet, Text, Button, Alert, Image} from 'react-native';
+import { View, StyleSheet, Text, ScrollView, Alert, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import BodyText from '../components/BodyText';
 import Card from '../components/Card';
@@ -19,11 +20,21 @@ const generateRandomBetween = (min, max, exclude) => {
     }
 };
 
+const renderListItem = (value, numOfRounds) => (
+    <View key={value} style={styles.listItem}>
+        <BodyText>Guess: {value} </BodyText>
+        <BodyText> Try: {numOfRounds}</BodyText>
+    </View>
+);
+
 const GameScreen = props => {
-    const [currentGuess, setCurrentGuess] = useState(
-        generateRandomBetween(1, 100, props.userChoice)
-    );
-    const [rounds, setRounds] = useState(0);
+
+
+    const initialGuess = generateRandomBetween(1, 100, props.userChoice);
+
+    const [currentGuess, setCurrentGuess] = useState(initialGuess);
+
+    const [pastGuesses, setPastGuesses] = useState([initialGuess]);
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
 
@@ -31,7 +42,7 @@ const GameScreen = props => {
 
     useEffect(() => {
         if (currentGuess === userChoice) {
-            onGameOver(rounds);
+            onGameOver(pastGuesses.length);
         }
     }, [currentGuess, userChoice, onGameOver]);
 
@@ -65,34 +76,45 @@ const GameScreen = props => {
             currentHigh.current = currentGuess;
 
         } else {
-            currentLow.current = currentGuess;
+            currentLow.current = currentGuess + 1;
         }
-        const nextNumber = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
+        const nextNumber = generateRandomBetween(
+            currentLow.current,
+            currentHigh.current,
+            currentGuess
+        );
         setCurrentGuess(nextNumber);
-        setRounds(curRounds => curRounds + 1);
+        // setRounds(curRounds => curRounds + 1);
+        setPastGuesses(curPastGuesses => [nextNumber, ...curPastGuesses])
     };
-    // /*      
-    //       const randomAlert = Math.floor(Math.random() * 3) + 1;
-    //             if (randomAlert === 1) {
-    //                 Alert.alert('Error alert!',  message='Are you having trouble remembering the number you chose?');}
-    //         Alert.alert('Wrong button', message='Are you sure that is correct button to press?');
-
-    //     };*/
 
     return (
         <View style={styles.screen}>
             <Text style={DefaultStyles.label}>Opponent's Guess: </Text>
             <NumberContainer>{currentGuess}</NumberContainer>
             <Card style={styles.buttonContainer}>
-                <MainButton onPress={nextGuessHandler.bind(this, 'lower')}>LOWER</MainButton>
-                <MainButton onPress={nextGuessHandler.bind(this, 'higher')}>HIGHER</MainButton> 
+                <MainButton onPress={nextGuessHandler.bind(this, 'lower')}>
+                    <Ionicons name="md-remove" size={24} color="white" />
+                </MainButton>
+                <MainButton onPress={nextGuessHandler.bind(this, 'higher')}>
+                    <Ionicons name="md-add" size={24} color="white" />
+                </MainButton>
             </Card>
+            <View style={styles.list}>
+                <ScrollView >
+                    {pastGuesses.map((guess, index) => renderListItem(guess, pastGuesses.length - index))}
+                    {/* <View key={guess}>
+                        <Text>{guess}</Text>
+                    </View>)} */}
+                </ScrollView>
+            </View>
+
             <View style={DefaultStyles.imageContainer}>
-                <Image 
+                <Image
                     fadeDuration={1000}
                     source={require('../assets/img/robot.png')}
                     style={DefaultStyles.image}
-                  //  resizeMode={"center"}
+                //  resizeMode={"center"}
                 />
             </View>
         </View>
@@ -106,6 +128,20 @@ const styles = StyleSheet.create({
         marginTop: 20,
         width: 350,
         maxWidth: '85%'
+    },
+    list: {
+        flex: 1,
+        width: '80%',
+        maxHeight: '30%'
+    },
+    listItem: {
+        borderColor: '#ccc',
+        borderWidth: 1,
+        padding: -2,
+        marginVertical: -3,
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     },
     screen: {
         flex: 1,
