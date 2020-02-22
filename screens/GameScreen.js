@@ -4,6 +4,7 @@ import { View, StyleSheet, Text, Button, Alert, Image} from 'react-native';
 import BodyText from '../components/BodyText';
 import Card from '../components/Card';
 import DefaultStyles from '../constants/default-styles';
+import MainButton from '../components/MainButton';
 import NumberContainer from '../components/NumberContainer';
 
 
@@ -83,15 +84,15 @@ const GameScreen = props => {
             <Text style={DefaultStyles.label}>Opponent's Guess: </Text>
             <NumberContainer>{currentGuess}</NumberContainer>
             <Card style={styles.buttonContainer}>
-                <Button title="LOWER" onPress={nextGuessHandler.bind(this, 'lower')} />
-                <Button title="HIGHER" onPress={nextGuessHandler.bind(this, 'higher')} />
+                <MainButton onPress={nextGuessHandler.bind(this, 'lower')}>LOWER</MainButton>
+                <MainButton onPress={nextGuessHandler.bind(this, 'higher')}>HIGHER</MainButton> 
             </Card>
             <View style={DefaultStyles.imageContainer}>
                 <Image 
                     fadeDuration={1000}
                     source={require('../assets/img/robot.png')}
                     style={DefaultStyles.image}
-                    resizeMode={"center"}
+                  //  resizeMode={"center"}
                 />
             </View>
         </View>
@@ -103,8 +104,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginTop: 20,
-        width: 300,
-        maxWidth: '80%'
+        width: 350,
+        maxWidth: '85%'
     },
     screen: {
         flex: 1,

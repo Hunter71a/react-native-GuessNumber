@@ -4,7 +4,9 @@ import { View, Keyboard, StyleSheet, Text, Button, TouchableWithoutFeedback, Ale
 import BodyText from '../components/BodyText';
 import Card from '../components/Card'
 import Colors from '../constants/colors';
+import ImageFrame from '../components/ImageFrame'
 import Input from '../components/Input';
+import MainButton from '../components/MainButton';
 import NumberContainer from '../components/NumberContainer';
 import TitleText from '../components/TitleText';
 
@@ -46,7 +48,9 @@ const StartGameScreen = props => {
             <Card style={styles.summaryContainer}>
                 <BodyText>You selected</ BodyText>
                 <NumberContainer>{selectedNumber}</NumberContainer>
-                <Button title="START GAME" onPress={() => props.onStartGame(selectedNumber)} />
+                <MainButton onPress={() => props.onStartGame(selectedNumber)}
+                >START GAME
+                </MainButton>
             </Card >
         );
     }
@@ -55,6 +59,9 @@ const StartGameScreen = props => {
 
     if (!confirmed) {
         unconfirmed = (
+            // <ImageFrame source={require('../assets/img/question_mark.png')}>
+            //  create image component not completed
+            //     </ImageFrame>
             <View style={styles.imageContainer}>
                 <Image
                     fadeDuration={1000}
@@ -100,7 +107,7 @@ const StartGameScreen = props => {
                     </View>
                 </Card>
                 {confirmedOutput}
-                {unconfirmed}             
+                {unconfirmed}
             </View>
         </TouchableWithoutFeedback>
     );
