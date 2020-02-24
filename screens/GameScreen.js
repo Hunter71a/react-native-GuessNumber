@@ -5,8 +5,9 @@ import { Ionicons } from '@expo/vector-icons';
 import BodyText from '../components/BodyText';
 import Card from '../components/Card';
 import DefaultStyles from '../constants/default-styles';
-import MainButton from '../components/MainButton';
+import MainButton from '../components/MainButton.android';
 import NumberContainer from '../components/NumberContainer';
+import {ScreenOrientation} from 'expo'; 
 
 
 const generateRandomBetween = (min, max, exclude) => {
@@ -28,7 +29,7 @@ const renderListItem = (listLength, itemData) => (
 );
 
 const GameScreen = props => {
-
+ //   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
 
     const initialGuess = generateRandomBetween(1, 100, props.userChoice);
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
@@ -211,6 +212,7 @@ const styles = StyleSheet.create({
     listContainerBig: {
         flex: 1,
         width: '80%',
+        minHeight: 32,
         //maxHeight: '30%'
     },
     listItem: {

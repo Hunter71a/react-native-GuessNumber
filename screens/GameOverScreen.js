@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, Button, Image, Dimensions, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Button, Image, Dimensions, ScrollView, SafeAreaView } from 'react-native';
 
 import BodyText from '../components/BodyText';
 import Colors from '../constants/colors';
 import DefaultStyles from '../constants/default-styles';
-import MainButton from '../components/MainButton';
+import MainButton from '../components/MainButton.android';
 import TitleText from '../components/TitleText';
 
 const GameOverScreen = props => {

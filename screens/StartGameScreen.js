@@ -6,7 +6,7 @@ import Card from '../components/Card'
 import Colors from '../constants/colors';
 import ImageFrame from '../components/ImageFrame'
 import Input from '../components/Input';
-import MainButton from '../components/MainButton';
+import MainButton from '../components/MainButton.android';
 import NumberContainer from '../components/NumberContainer';
 import TitleText from '../components/TitleText';
 
@@ -52,7 +52,7 @@ const StartGameScreen = props => {
 
     useEffect(() => {
         const updateLayout = () => {
-            setButtonWidth(Dimensions.get('window'.width / 4))
+            setButtonWidth(Dimensions.get('window').width / 4);
         };
         Dimensions.addEventListener('change', updateLayout);
         return () => {
